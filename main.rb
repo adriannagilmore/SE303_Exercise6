@@ -1,10 +1,18 @@
-def draw_button(label_text, x, y, foreground_color, is_dark_mode)   #Code Smell: Long Parameter List    Fix: Preserve Whole Object
-  if is_dark_mode
-    # darken foreground color for dark mode                         #Code Smell: Comments               Fix: Let code speak for itself
-    paint(label_text, x, y, foreground_color - 10, '#111111')       #Code Smell: Long Parameter List    Fix: Replace Parameter with Query
-  else
-    # lighten foreground color for non-dark mode                    #Code Smell: Comments               Fix: Let code speak for itself
-    paint(label_text, x, y, foreground_color + 10, '#E0E0E0')       #Code Smell: Long Parameter List    Fix: Replace Parameter with Query
+class Button 
+  attr_accessor :text, :x, :y, :dark_mode, :foreground_color
+  def initialize(label_text, x, y)
+    @text = label_text
+    @x = x
+    @y = y
+    @dark_mode = True
+    @foreground_color = 'ffffff'
   end
 end
 
+def draw_button(button_object)
+  if button_object.dark_mode
+    paint(button_object.label_text, button_object.x, button_object.y, button_object.foreground_color - 10, '#111111')
+  else
+    paint(button_object.label_text, button_object.x, button_object.y, button_object.foreground_color - 10, '#E0E0E0')
+  end
+end
